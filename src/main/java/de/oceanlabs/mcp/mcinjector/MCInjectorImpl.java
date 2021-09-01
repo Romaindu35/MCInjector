@@ -157,7 +157,7 @@ public class MCInjectorImpl
     public byte[] processClass(byte[] cls, boolean readOnly)
     {
         ClassReader cr = new ClassReader(cls);
-        ClassNode cn = new ClassNode();
+        ClassNode cn = new ClassNode(Opcodes.ASM7);
 
         ClassVisitor ca = cn;
         if (readOnly)
@@ -181,11 +181,12 @@ public class MCInjectorImpl
             ca = new ClassInitAdder(ca);
         }
 
-        ca = new ClassVisitor(Opcodes.ASM6, ca) //Top level, so we can print the logs.
+        ca = new ClassVisitor(Opcodes.ASM7, ca) //Top level, so we can print the logs.
         {
             @Override
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces)
             {
+                System.out.println("ASM version =" + api);
                 MCInjector.LOG.log(Level.FINE, "Class: " + name + " Extends: " + superName);
                 super.visit(version, access, name, signature, superName, interfaces);
             }

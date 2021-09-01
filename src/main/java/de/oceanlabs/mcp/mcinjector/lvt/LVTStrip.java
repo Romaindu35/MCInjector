@@ -14,7 +14,7 @@ public class LVTStrip extends ClassVisitor
 
     public LVTStrip(ClassVisitor cn)
     {
-        super(Opcodes.ASM6, cn);
+        super(Opcodes.ASM7, cn);
     }
 
     @Override

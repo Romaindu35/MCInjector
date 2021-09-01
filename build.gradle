@@ -1,17 +1,17 @@
 plugins {
   //id 'net.minecrell.licenser' version '0.3'
   id 'org.ajoberstar.grgit' version '2.3.0'
-  id 'com.github.johnrengelman.shadow' version '2.0.4'
+  id 'com.github.johnrengelman.shadow' version '7+'
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group = 'de.oceanlabs.mcp'
 version = gitVersion()
-targetCompatibility = sourceCompatibility = compileJava.targetCompatibility = compileJava.sourceCompatibility = '1.8'
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+println("group " + group + " name " + name + " version " + version)
 
 ext {
     CHANGELOG = file("build/${project.name}-${project.version}-changelog.txt")
@@ -59,16 +59,17 @@ if (changelog.exists()) {
 }
 
 dependencies {
-    compile 'org.ow2.asm:asm:6.1-beta2'
-    compile 'org.ow2.asm:asm-tree:6.1-beta2'
-    compile 'net.sf.jopt-simple:jopt-simple:4.9'
-    compile 'com.google.code.gson:gson:2.2.4'
+    /*implementation 'org.ow2.asm:asm:6.1-beta2'
+    implementation 'org.ow2.asm:asm-tree:6.1-beta2'*/
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'org.ow2.asm:asm-tree:9.2'
+    implementation 'net.sf.jopt-simple:jopt-simple:5.0.4'
+    implementation 'com.google.code.gson:gson:2.8.8'
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
             artifact shadowJar
             artifact tasks.sourceJar
             if (CHANGELOG.exists())
@@ -125,7 +126,7 @@ publishing {
                 }
                 url 'http://files.minecraftforge.net/maven/manage/upload'
             } else {
-                url 'file://' + project.file('repo').getAbsolutePath()
+                url 'file://' + new File("C:\\Users\\Romain\\.m2\\repository").getAbsolutePath()
             }
         }
     }

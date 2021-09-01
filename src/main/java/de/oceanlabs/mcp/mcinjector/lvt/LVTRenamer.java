@@ -18,7 +18,7 @@ public abstract class LVTRenamer extends ClassVisitor
 
     public LVTRenamer(ClassVisitor cn)
     {
-        super(Opcodes.ASM6, cn);
+        super(Opcodes.ASM7, cn);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ParameterAnnotationFixer extends ClassVisitor
 
     public ParameterAnnotationFixer(ClassVisitor cn, MCInjectorImpl mci)
     {
-        super(Opcodes.ASM6, cn);
+        super(Opcodes.ASM7, cn);
         // Extra version check, since these were added in ASM 6.1 and there
         // isn't a constant for it
         try {

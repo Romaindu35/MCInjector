@@ -19,7 +19,7 @@ public class InnerClassInitAdder extends ClassVisitor
 
     public InnerClassInitAdder(ClassVisitor cv)
     {
-        super(Opcodes.ASM6, cv);
+        super(Opcodes.ASM7, cv);
     }
 
     @Override

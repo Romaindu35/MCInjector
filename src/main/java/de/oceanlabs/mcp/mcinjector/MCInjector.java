@@ -163,6 +163,8 @@ public class MCInjector
 
     public static void main(String[] args) throws Exception
     {
+
+        System.out.println("MCInjector for mohist");
         OptionParser parser = new OptionParser();
         OptionSpec<Void>      help   = parser.accepts("help")   .forHelp();
         OptionSpec<Void>      ver    = parser.accepts("version").forHelp();
